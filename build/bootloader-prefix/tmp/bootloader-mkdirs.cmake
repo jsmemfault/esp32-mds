@@ -3,25 +3,20 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-# If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
-# existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
-# would cause a fatal error, even though it would be a no-op.
-if(NOT EXISTS "/Users/jrsharp/src/esp-idf/v5.4/esp-idf/components/bootloader/subproject")
-  file(MAKE_DIRECTORY "/Users/jrsharp/src/esp-idf/v5.4/esp-idf/components/bootloader/subproject")
-endif()
 file(MAKE_DIRECTORY
-  "/Users/jrsharp/src/esp32-mds/build/bootloader"
-  "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix"
-  "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/tmp"
-  "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/src/bootloader-stamp"
-  "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/src"
-  "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/tyler/esp/esp-idf/components/bootloader/subproject"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/tmp"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/src"
+  "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/jrsharp/src/esp32-mds/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/tyler/dev/junk/esp32-mds/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

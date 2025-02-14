@@ -3,16 +3,6 @@
         "children": [],
         "depends_on": null,
         "help": null,
-        "id": "SOC_CAPS_ECO_VER_MAX",
-        "name": "SOC_CAPS_ECO_VER_MAX",
-        "range": null,
-        "title": null,
-        "type": "int"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
         "id": "SOC_ADC_SUPPORTED",
         "name": "SOC_ADC_SUPPORTED",
         "range": null,
@@ -625,16 +615,6 @@
         "help": null,
         "id": "SOC_AES_SUPPORT_AES_256",
         "name": "SOC_AES_SUPPORT_AES_256",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
-        "id": "SOC_AES_SUPPORT_PSEUDO_ROUND_FUNCTION",
-        "name": "SOC_AES_SUPPORT_PSEUDO_ROUND_FUNCTION",
         "range": null,
         "title": null,
         "type": "bool"
@@ -1923,16 +1903,6 @@
         "children": [],
         "depends_on": null,
         "help": null,
-        "id": "SOC_PCNT_SUPPORT_STEP_NOTIFY",
-        "name": "SOC_PCNT_SUPPORT_STEP_NOTIFY",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
         "id": "SOC_PCNT_SUPPORT_SLEEP_RETENTION",
         "name": "SOC_PCNT_SUPPORT_SLEEP_RETENTION",
         "range": null,
@@ -3185,16 +3155,6 @@
         "help": null,
         "id": "SOC_FLASH_ENCRYPTION_XTS_AES_128",
         "name": "SOC_FLASH_ENCRYPTION_XTS_AES_128",
-        "range": null,
-        "title": null,
-        "type": "bool"
-    },
-    {
-        "children": [],
-        "depends_on": null,
-        "help": null,
-        "id": "SOC_FLASH_ENCRYPTION_XTS_AES_SUPPORT_PSEUDO_ROUND",
-        "name": "SOC_FLASH_ENCRYPTION_XTS_AES_SUPPORT_PSEUDO_ROUND",
         "range": null,
         "title": null,
         "type": "bool"
@@ -7247,7 +7207,7 @@
                             },
                             {
                                 "children": [],
-                                "depends_on": "!APP_BUILD_TYPE_PURE_RAM_APP",
+                                "depends_on": "!APP_BUILD_TYPE_PURE_RAM_APP && !ESP_SLEEP_POWER_DOWN_FLASH",
                                 "help": "All IOs will be set to isolate(floating) state by default during sleep.\nSince the power supply of SPI Flash is not lost during lightsleep, if its CS pin is recognized as\nlow level(selected state) in the floating state, there will be a large current leakage, and the\ndata in Flash may be corrupted by random signals on other SPI pins.\nSelect this option will set the CS pin of Flash to PULL-UP state during sleep, but this will\nincrease the sleep current about 10 uA.\nIf you are developing with esp32xx modules, you must select this option, but if you are developing\nwith chips, you can also pull up the CS pin of SPI Flash in the external circuit to save power\nconsumption caused by internal pull-up during sleep.\n(!!! Don't deselect this option if you don't have external SPI Flash CS pin pullups.)",
                                 "id": "ESP_SLEEP_FLASH_LEAKAGE_WORKAROUND",
                                 "name": "ESP_SLEEP_FLASH_LEAKAGE_WORKAROUND",
@@ -7267,7 +7227,7 @@
                             },
                             {
                                 "children": [],
-                                "depends_on": "ESP_SLEEP_PSRAM_LEAKAGE_WORKAROUND || ESP_SLEEP_FLASH_LEAKAGE_WORKAROUND",
+                                "depends_on": "!ESP_SLEEP_POWER_DOWN_FLASH && (ESP_SLEEP_PSRAM_LEAKAGE_WORKAROUND || ESP_SLEEP_FLASH_LEAKAGE_WORKAROUND)",
                                 "help": "To reduce leakage current, some types of SPI Flash/RAM only need to pull up the CS pin\nduring light sleep. But there are also some kinds of SPI Flash/RAM that need to pull up\nall pins. It depends on the SPI Flash/RAM chip used.",
                                 "id": "ESP_SLEEP_MSPI_NEED_ALL_IO_PU",
                                 "name": "ESP_SLEEP_MSPI_NEED_ALL_IO_PU",
